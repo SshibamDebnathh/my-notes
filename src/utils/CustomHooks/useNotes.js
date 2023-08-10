@@ -8,7 +8,7 @@ function createNote(id,text) {
 
 function isNote(obj) {
     // Checks if obj contains the data to be considered a note, return true if it is and false + error message if is not;
-    let [isNote, message] = [true, ""];
+    let [isNote, message] = [true,  ];
 
     if (!("id" in obj) || !("text" in obj)) 
     {
@@ -55,7 +55,7 @@ function useNoteList() {
             else {
                 if (response.status === "NO_RESPONSE_CODE") {
                     // No server
-                    console.log("Failed connection to server")
+                     ("Failed connection to server")
                     return Promise.reject(new Error("Server Unavailable"))
                 }
             }
@@ -68,8 +68,8 @@ function useNoteList() {
             setLs(data);
         })
         .catch(error => {
-            console.log(error.toString())
-            console.log("Was not able to connect to server")
+             (error.toString())
+             ("Was not able to connect to server")
         }).finally(() => {
             setConnection({successful:connectSuccess, lastOperation:getNotes});
         })
@@ -99,17 +99,17 @@ function useNoteList() {
             else {
                 if (response.status === "NO_RESPONSE_CODE") {
                     // No server
-                    console.log("Failed connection to server")
+                     ("Failed connection to server")
                     return Promise.reject(new Error("Server Unavailable"))
                 }
             }
         })
         .then(r => {
-            console.log(r)
+             (r)
         })
         .catch(error => {
-            console.log(error.toString())
-            console.log("Was not able to connect to server")
+             (error.toString())
+             ("Was not able to connect to server")
         }).finally(() => {
             setConnection({successful:connectSuccess, lastOperation: () => addNote(text)});
         })
@@ -132,16 +132,16 @@ function useNoteList() {
                 connectSuccess = true;
                return response.text(); 
             }else{
-                console.log(response.status)
+                 (response.status)
             }
         }).then(r => {
             if(Number.parseInt(r) === 1) {
-                console.log("Sucess deleting " + r + " note with noteId " + id)                
+                 ("Sucess deleting " + r + " note with noteId " + id)                
             }else{
-                console.log("Error during operation. Exactly " + r + " notes were deleted.")
-                console.log("NoteId: " + id)
+                 ("Error during operation. Exactly " + r + " notes were deleted.")
+                 ("NoteId: " + id)
             }
-        }).catch(err => console.log(err))
+        }).catch(err =>  (err))
         .finally(() => {setConnection({successful:connectSuccess, lastOperation:() => deleteNote(id)});})
         
         setLs(ls.filter((n) => n.id !== id));
@@ -169,22 +169,22 @@ function useNoteList() {
             else {
                 if (response.status === "NO_RESPONSE_CODE") {
                     // No server
-                    console.log("Failed connection to server")
+                     ("Failed connection to server")
                     return Promise.reject(new Error("Server Unavailable"))
                 }
             }
         })
         .then(r => {
             if(Number.parseInt(r) > 0) {
-                console.log("Succesfully edited " + r + " note(s)!")
+                 ("Succesfully edited " + r + " note(s)!")
             }
             else {
-                console.log(r)
+                 (r)
             }
         })
         .catch(error => {
-            console.log(error.toString())
-            console.log("Was not able to connect to server")
+             (error.toString())
+             ("Was not able to connect to server")
         }).finally(() => {
             setConnection({successful:connectSuccess, lastOperation:() => editNote(id, text)});
         })
